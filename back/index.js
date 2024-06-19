@@ -6,12 +6,6 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 
-// Middleware de tratamento de erros
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send({ message: 'Algo deu errado!' });
-});
-
 //Rota para Buscar Livro
 app.get('/livro', async(req, res) => {
   let filtroTitulo = {}
@@ -55,6 +49,12 @@ app.post('/livro', async (req, res) => {
     return res.status(500).json({ message: 'Error ao cadastrar o Livro!'})
   }
 })
+
+// Middleware de tratamento de erros
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({ message: 'Algo deu errado!' });
+});
 
 //Inicializa o servidor
 const PORT = process.env.PORT || 8080;
