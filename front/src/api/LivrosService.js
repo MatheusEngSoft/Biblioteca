@@ -1,26 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
-const BASE_URL = "http://localhost:3000"
+const API_URL = 'http://localhost:8080'; // URL do seu backend
 
-export class LivrosService{
-    static getLivros(){
-        return axios.get(BASE_URL+'/livros');
-    }
-
-    static getLivro(id){
-        return axios.get(`${BASE_URL}/livros/${id}`);
-    }
-
-    static createLivro(body){
-        return axios.post(`${BASE_URL}/livros`,body);
-    }
-
-    static updateLivro(id,body){
-        return axios.put(`${BASE_URL}/livros/${id}`,body);
-    }
-
-    static deleteLivro(id){
-        return axios.delete(`${BASE_URL}/livros/${id}`);
-    }
-    
-}
+export const LivrosService = {
+  getLivros: () => axios.get(`${API_URL}/livro`),
+  getLivro: (id) => axios.get(`${API_URL}/livro/${id}`),
+  createLivro: (livro) => axios.post(`${API_URL}/livro`, livro),
+  updateLivro: (id, livro) => axios.put(`${API_URL}/livro/${id}`, livro),
+  deleteLivro: (id) => axios.delete(`${API_URL}/livro/${id}`)
+};
