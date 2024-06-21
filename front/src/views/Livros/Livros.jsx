@@ -13,7 +13,7 @@ const Livros = () => {
   }
 
   async function deleteLivro(livroId) {
-    let valida = window.confirm(`Você realmente deseja remover o livro de ID: ${livroId}`);
+    let valida = confirm(`Você realmente deseja remover o livro de ID: ${livroId}`);
     if (valida) {
       await LivrosService.deleteLivro(livroId)
         .then(({ data }) => {
@@ -39,8 +39,9 @@ const Livros = () => {
           {livros.map((livro) => (
             <li key={livro.id}>
               <div>{livro.titulo}</div>
-              <div>{livro.editora}</div>
               <div>{livro.num_paginas}</div>
+              <div>{livro.isbn}</div>
+              <div>{livro.editora}</div>
               <div className='botoes'>
                 <div>
                   <Link className='btn edit' to={`/livros/edicao/${livro.id}`}>

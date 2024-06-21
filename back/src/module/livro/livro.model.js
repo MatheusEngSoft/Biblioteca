@@ -5,7 +5,7 @@ const livroSchema = new Schema(
   {
     id: { type: Number, required: true, unique: true },
     titulo: { type: String, required: true, unique: true },
-    numeroPagina: { type: Number, required: true },
+    numeroPagina: { type: String, required: true },
     isbn: { type: String, required: true, unique: true },
     editora: { type: String, required: true },
   },

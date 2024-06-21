@@ -83,7 +83,7 @@ app.put('/livro/:id', async (req, res) => {
   }
 });
 
-// Rota de Deleção de Livro
+// Rota de Deletação de Livro
 app.delete('/livro/:id', async (req, res) => {
   const { id } = req.params;
 
