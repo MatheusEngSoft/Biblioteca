@@ -6,12 +6,23 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+// Rota para Listar todos os Livros
+app.get('/livros', async (req, res) => {
 
-// Rota para Buscar Livro
-app.get('/livro', async (req, res) => {
-  const filtroTitulo = req.query.titulo ? { titulo: req.query.titulo } : {};
   try {
-    const livro = await livroModel.find(filtroTitulo);
+    const livro = await livroModel.find();
+    return res.status(200).json(livro);
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro ao buscar o Livro!' });
+  }
+});
+
+// Rota para Buscar 1 Livro por Id
+app.get('/livro/:id', async (req, res) => {
+  const filtroId = req.query.id ? { id: req.query.id } : {};
+  console.log(filtroId)
+  try {
+    const livro = await livroModel.find(filtroId);
     return res.status(200).json(livro);
   } catch (error) {
     return res.status(500).json({ message: 'Erro ao buscar o Livro!' });
@@ -77,7 +88,7 @@ app.put('/livro/:id', async (req, res) => {
     if (!livroAtualizado) {
       return res.status(404).json({ message: 'Livro não encontrado!' });
     }
-    return res.status(200).json(livroAtualizado);
+    return res.status(200).json({livroAtualizado, mensagem:'Livro atualizado!'});
   } catch (error) {
     return res.status(500).json({ message: 'Erro ao atualizar o Livro!' });
   }

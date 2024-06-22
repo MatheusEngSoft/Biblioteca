@@ -8,7 +8,7 @@ const LivrosEdicao = () => {
   let { livroId } = useParams();
   const [livro, setLivro] = useState({
     titulo: '',
-    num_paginas: '',
+    numeroPagina: '',
     isbn: '',
     editora: ''
   });
@@ -18,7 +18,7 @@ const LivrosEdicao = () => {
       const { data } = await LivrosService.getLivro(livroId);
       setLivro({
         titulo: data.titulo,
-        num_paginas: data.num_paginas,
+        numeroPagina: data.numeroPagina,
         isbn: data.isbn,
         editora: data.editora
       });
@@ -31,14 +31,15 @@ const LivrosEdicao = () => {
     const body = {};
 
     if (livro.titulo) body.titulo = livro.titulo;
-    if (livro.num_paginas) body.num_paginas = livro.num_paginas;
+    if (livro.numeroPagina) body.numeroPagina = livro.numeroPagina;
     if (livro.isbn) body.isbn = livro.isbn;
     if (livro.editora) body.editora = livro.editora;
 
     try {
-      const { data } = await LivrosService.updateLivro(livroId, body);
+      const { data}  = await LivrosService.updateLivro(livroId, body);
+      console.log(data)
       alert(data.mensagem);
-      getLivro(); // Atualiza os dados do livro após a edição
+       getLivro(); // Atualiza os dados do livro após a edição
     } catch (error) {
       alert(`Erro ao atualizar o livro: ${error.response.data.mensagem}`);
     }
@@ -46,7 +47,7 @@ const LivrosEdicao = () => {
 
   useEffect(() => {
     getLivro();
-  }, []);
+  },   []);
 
   return (
     <>
@@ -67,8 +68,8 @@ const LivrosEdicao = () => {
               <label>Número de Páginas</label>
               <input
                 type="text"
-                onChange={(event) => setLivro({ ...livro, num_paginas: event.target.value })}
-                value={livro.num_paginas}
+                onChange={(event) => setLivro({ ...livro, numeroPagina: event.target.value })}
+                value={livro.numeroPagina}
               />
             </div>
             <div className='form-group'>

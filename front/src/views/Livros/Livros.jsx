@@ -37,9 +37,10 @@ const Livros = () => {
         <h1>Escolha o seu livro</h1>
         <ul>
           {livros.map((livro) => (
+           
             <li key={livro.id}>
               <div>{livro.titulo}</div>
-              <div>{livro.num_paginas}</div>
+              <div>{livro.numeroPagina}</div>
               <div>{livro.isbn}</div>
               <div>{livro.editora}</div>
               <div className='botoes'>

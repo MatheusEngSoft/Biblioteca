@@ -7,7 +7,7 @@ const LivrosCadastro = () => {
   const [livro, setLivro] = useState({
     id: '',
     titulo: '',
-    num_paginas: '',
+    numeroPagina: '',
     isbn: '',
     editora: ''
   });
@@ -16,16 +16,16 @@ const LivrosCadastro = () => {
     const body = {
       id: Number(livro.id),
       titulo: livro.titulo,
-      numeroPagina: Number(livro.num_paginas),
+      numeroPagina: Number(livro.numeroPagina),
       isbn: livro.isbn,
       editora: livro.editora
     };
 
-    if (livro.id && livro.titulo && livro.num_paginas && livro.isbn && livro.editora) {
+    if (livro.id && livro.titulo && livro.numeroPagina && livro.isbn && livro.editora) {
       try {
         await LivrosService.createLivro(body);
         alert('Livro cadastrado com sucesso!');
-        setLivro({ id: '', titulo: '', num_paginas: '', isbn: '', editora: '' });
+        setLivro({ id: '', titulo: '', numeroPagina: '', isbn: '', editora: '' });
       } catch (error) {
         alert(`Erro ao cadastrar o livro: ${error.response.data.message}`);
       }
@@ -51,7 +51,7 @@ const LivrosCadastro = () => {
             </div>
             <div className='form-group'>
               <label>Número de Páginas</label>
-              <input type="text" required onChange={(event) => setLivro({ ...livro, num_paginas: event.target.value })} value={livro.num_paginas} />
+              <input type="text" required onChange={(event) => setLivro({ ...livro, numeroPagina: event.target.value })} value={livro.numeroPagina} />
             </div>
             <div className='form-group'>
               <label>ISBN</label>
